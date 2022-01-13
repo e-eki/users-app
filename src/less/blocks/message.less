@@ -1,0 +1,52 @@
+.message {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: @screen-md) {
+        flex-direction: column;
+    }
+
+    &__user-info {
+        margin: 1vh 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__date {
+        //width: 100%;
+        text-align: center;
+        font-size: @message-date-font-size;
+        margin: 1vmin;
+
+        @media (min-width: @screen-md) {
+            max-width: 60px;
+        }
+    }
+
+    &__text {
+        word-break: break-all;
+    }
+
+    &__login {
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    &_preview {
+        padding: 0 2vmin;
+
+        @media (max-width: @screen-md) {
+            flex-direction: row;
+        }
+    }
+
+    &_date-preview {
+        padding: 0 2vmin;
+        
+        @media (max-width: @screen-md) {
+            display: none;
+        }
+    }
+}

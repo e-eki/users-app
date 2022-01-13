@@ -1,0 +1,82 @@
+.popup-form {
+    position: absolute;
+    // left: 25%;
+    // background: @snowwhite;
+    border: 2px solid @darkslategrey;
+    box-shadow: 0 0 10px 5px @darkslategrey;
+    border-radius: 7px;
+    padding: 3vmin;
+    z-index: 1;
+    min-width: 200px;
+
+    // @media (min-width: @screen-ll) {
+    //     left: 23vw;
+    // }
+
+    // @media (max-width: @screen-lg) {
+    //     left: 10vw;
+    // }
+
+    // @media (max-width: @screen-md) {
+    //     left: 0;
+    // }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: bold;
+        color: @greyblue;
+        text-align: center;
+        margin-bottom: 3vmin;
+    }
+
+    &__item {
+        margin: 1.5vmin;
+        word-break: break-word;
+
+        input[type="text"] {   //костыль
+            margin-left: 1vmin;
+        }
+    }
+
+    &__message-input {   // костыль?
+        width: 72vmin;
+        height: 30vmin;
+
+        textarea {  // костыль
+            width: 100%;
+            height: 100%;
+            font: @message-font;
+        }
+    }
+
+
+    &__buttons-block {
+        margin-top: 3vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &_day-mode {
+        background: @snowwhite;
+    }
+
+    &_night-mode {
+        background: @darkgreyblue;
+        border: 2px solid @grey;
+        box-shadow: 0 0 10px 5px @grey;
+
+        input, textarea {
+            background: @darkseagreen;   //костылик
+        }
+    }
+
+    input, textarea {
+        color: inherit;   //костылик
+        font-family: monospace;
+    }
+}

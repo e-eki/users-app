@@ -1,0 +1,36 @@
+.channel {
+    &__description-message {
+        // border: 2px solid @greyblue;
+        background: @greyblue;
+
+        a {
+            color: @lightblueviolet;
+        }
+    }
+
+    &__messages-preview {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__last-message {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    &__new-messages-note {
+        margin: 1vmin 0 2vmin 0;
+        padding: 1vmin 0;
+        text-align: center;
+        background: @violetgrey;
+        font-family: cursive;
+        font-size: @channel-note-font-size;
+        border-radius: 5px;
+    }
+
+    &__messages-preview {
+        display: flex;
+        justify-content: space-between;
+    }
+}

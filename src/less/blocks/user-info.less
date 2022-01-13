@@ -1,0 +1,28 @@
+.user-info {
+    
+    
+    &__login {
+        font-weight: bolder;
+        text-align: center;
+        // width: @avatar-size;
+        width: 100%;
+
+        @media (max-width: @screen-md) {
+            width: auto;
+		}
+    }
+
+    &__avatar {
+        height: @avatar-size;
+        width: @avatar-size;
+        border-radius: 15%;
+
+        @media (max-width: @screen-md) {
+			display: none;
+		}
+    }
+
+    &__caption-text {
+        // todo
+    }
+}

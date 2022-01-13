@@ -1,0 +1,49 @@
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh 0;
+    background: @darkslategrey;
+    border-radius: 5px 5px 0 0;
+    opacity: 0.95;
+
+    @media (max-width: @screen-lg) {
+        flex-direction: column;
+    }
+
+    &__logo {
+        margin: 0 3vw 0 2vw;
+    }
+
+    &__title {
+        color: @snowwhite;
+        letter-spacing: 0.5vw;
+        width: 33vw;
+        font-variant: small-caps;
+
+        @media (max-width: @screen-lg) {
+			display: none;
+		}
+    }
+
+    &__note {
+        font-variant: none;
+        font-size: @header-note-font-size;
+        letter-spacing: normal;
+        color: @orangered;
+        font-weight: bold;
+        font-family: cursive;
+
+        cursor: pointer;
+    }
+
+    &_mobile {
+        display: none;
+
+        @media (max-width: @screen-lg) {
+			display: block;
+		}
+    }
+}
