@@ -10,6 +10,7 @@ import Footer from './components/views/footer';
 import AlertFormContainer from './components/containers/alertFormContainer';
 import SearchFormContainer from './components/containers/SearchFormContainer';
 import BreadcrumbsContainer from './components/containers/BreadcrumbsContainer';
+import UsersListContainer from './components/containers/usersListContainer';
 import appConst from './constants/appConst';
 
 export default class App extends Component {
@@ -82,7 +83,7 @@ export default class App extends Component {
 
               <Switch>
                 <Route exact path="/" component={MainContainer} />
-                {/* <Route exact path="/sections/:id" component={SectionContainer} /> */}
+                <Route exact path="/users" component={UsersListContainer} />
                 {/* <Route strict path="/search" component={SearchResultsContainer} /> */}
                 <Redirect to="/" />
               </Switch>

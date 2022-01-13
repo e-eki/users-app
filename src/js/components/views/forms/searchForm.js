@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import appConst from '../../../constants/appConst';
 
-// форма для поиска по форуму
+// форма для поиска
 export default class SearchForm extends Component {
 
     constructor(props) {

@@ -1,6 +1,8 @@
 'use strict';
 
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
+import appConst from '../../constants/appConst';
 
 // главная страница приложения
 export default class Main extends PureComponent {
@@ -18,24 +20,9 @@ export default class Main extends PureComponent {
             <div className = {className}>
                 111111
 
-                {/* <ListForm
-                    canAdd = {this.props.canAdd}
-                    type = {forumConst.itemTypes.section}
-                    items = {sections}
-                    currentInfoItem = {this.props.currentInfoSection}
-                    setCurrentInfoItem = {this.props.setCurrentInfoSection}
-                    modifiableItem = {this.props.modifiableSection}
-                    movingItem = {this.props.movingSection}
-                    setModifiableItem = {this.props.setModifiableSection}
-                    setMovingItem = {this.props.setMovingSection}
-                    modifyItem = {this.props.modifySection}
-                    deleteItem = {this.props.deleteSection}
-
-                    parentItemsList = {this.props.parentItemsList}
-                    resetParentItemsList = {this.props.resetParentItemsList}
-
-                    colorTheme = {this.props.colorTheme}
-                /> */}
+                <Link to={appConst.usersLink}>
+                    USERS
+                </Link> 
             </div>
         )
     }

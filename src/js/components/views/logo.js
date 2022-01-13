@@ -19,7 +19,7 @@ export default class Logo extends PureComponent {
                     <img 
                         name = 'logo'
                         className = 'logo__img' 
-                        src = '/images/trekking_logo.png' 
+                        src = '/images/users.png' 
                         alt = 'Перейти на главную'
                         title = 'Перейти на главную'
                     >

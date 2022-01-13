@@ -3,7 +3,7 @@
 import {Map} from 'immutable';
 import * as actionTypes from '../actions/actionTypes';
 
-// управление поиском по форуму
+// управление поиском
 export default function searchReducer(state = Map(), action) {
 
   switch (action.type) {

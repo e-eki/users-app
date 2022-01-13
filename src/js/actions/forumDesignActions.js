@@ -9,3 +9,11 @@ export function setColorTheme(data) {
 	  data
 	};
 }
+
+// тип отображения списка пользователей (таблица/карточка/плитка)
+export function setViewType(data) {
+	return {
+	  type: actionTypes.SET_VIEW_TYPE,
+	  data
+	};
+}

@@ -4,15 +4,22 @@ module.exports = {
 	// названия роутов
 	defaultLink: '/',
 	searchLink: '/search',
-	userInfoLink: '/user-info',
+	usersLink: '/users',
 
 	// название приложения
-	appName: 'Пользователи компании N',
+	appName: 'Учёт пользователей компании N',
 
-	// типы поиска по форуму
+	// типы поиска
 	searchTypes: {
 		channels: 'по чатам',
 		messages: 'по сообщениям',
+	},
+
+	// типы отображения списка пользователей
+	viewTypes: {
+		table: 'таблицы',
+		cards: 'списка карточек',
+		tiles: 'плитки (по группам)'
 	},
 
 	// цветовые темы оформления

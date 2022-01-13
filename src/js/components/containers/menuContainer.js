@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Menu from '../views/menu';
 import appConst from '../../constants/appConst';
-import { setColorTheme } from '../../actions/forumDesignActions';
+import { setColorTheme, setViewType } from '../../actions/forumDesignActions';
 
 // контейнер для меню
 class MenuContainer extends PureComponent {
@@ -13,8 +13,14 @@ class MenuContainer extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.changeViewType = this.changeViewType.bind(this);
         this.changeColorTheme = this.changeColorTheme.bind(this);
         this.getColorThemeButtonTitle = this.getColorThemeButtonTitle.bind(this);
+    }
+
+    changeViewType(data) {
+        debugger;
+        this.props.setViewType(data);
     }
 
     // изменение темы оформления
@@ -71,6 +77,8 @@ class MenuContainer extends PureComponent {
             <Menu
                 colorThemeTitle = {colorThemeTitle}
                 changeColorTheme = {this.changeColorTheme}
+                changeViewType = {this.changeViewType}
+                viewType = {this.props.viewType}
             />
         );
     }
@@ -79,6 +87,7 @@ class MenuContainer extends PureComponent {
 const mapStateToProps = function(store) {
     return {
         colorTheme: store.forumDesignState.get('colorTheme'),
+        viewType: store.forumDesignState.get('viewType'),
     };
 };
 
@@ -86,6 +95,9 @@ const mapDispatchToProps = function(dispatch) {
     return {
         setColorTheme: function(data) {
             dispatch(setColorTheme(data));
+        },
+        setViewType: function(data) {
+            dispatch(setViewType(data));
         }
     }
 }

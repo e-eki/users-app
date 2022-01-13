@@ -8,7 +8,7 @@ import * as searchActions from '../../actions/searchActions';
 import SearchForm from '../views/forms/searchForm';
 import * as baseUtils from '../../utils/baseUtils';
 
-// контейнер для формы поиска по форуму
+// контейнер для формы поиска
 class SearchFormContainer extends PureComponent {
 
     constructor(props) {

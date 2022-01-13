@@ -57,6 +57,7 @@ export const SET_ACCESS_TOKEN_EXPIRES_IN = 'SET_ACCESS_TOKEN_EXPIRES_IN';
 
 //---Forum design actions
 export const SET_COLOR_THEME = 'SET_COLOR_THEME';
+export const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
 
 //---Remote actions (отправляются на сервер и приходят с сервера)
 export const JOIN_ROOM = 'JOIN_ROOM';
