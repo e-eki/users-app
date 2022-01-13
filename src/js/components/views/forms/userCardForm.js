@@ -11,7 +11,7 @@ export default class UserCardForm extends PureComponent {
         this.user = this.props.user;
     }
 
-
+    // r = () => console.log('qqq');  //todo!!!
 
     render() {
         const className = 'user-card-form ' + (this.props.className ? this.props.className : '');
