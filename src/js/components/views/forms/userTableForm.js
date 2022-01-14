@@ -14,18 +14,17 @@ export default class UserTableForm extends PureComponent {
 
 
     render() {
-        const className = 'user-table-form ' + (this.props.className ? this.props.className : '');
-        
+        const className = 'user-table-form ' + ((this.props.number % 2 == 0) ? '' : 'user-table-form_darkened') + (this.props.className ? this.props.className : '');
         debugger;
         
         return (
             <div className = {className}>
                 {/* <div className='user-table-form_row'> */}
-                    <div className=''>{this.user.name} {this.user.surname}</div>
-                    <div className=''>{this.user.personalPage}</div>
-                    <div className=''>{this.user.email}</div>
-                    <div className=''>{this.user.group}</div>
-                    <div className=''>{this.user.phone}</div>
+                    <div className='user-table-form__name'>{this.user.firstName} {this.user.lastName}</div>
+                    <div className='user-table-form__page'>{this.user.personalPage}</div>
+                    <div className='user-table-form__email'>{this.user.email}</div>
+                    <div className='user-table-form__group'>{this.user.group}</div>
+                    <div className='user-table-form__phone'>{this.user.phone}</div>
                 {/* </div> */}
             </div>
         )

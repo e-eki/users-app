@@ -21,7 +21,7 @@ export default class UserCardForm extends PureComponent {
         return (
             <div className = {className}>
                 {/* <div className='user-card-form_card'> */}
-                    <div className='user-card-form__name'>{this.user.name} {this.user.surname}</div>
+                    <div className='user-card-form__name'>{this.user.firstName} {this.user.lastName}</div>
                     <img 
                         name = 'user-image'
                         className = 'user-card-form__img' 

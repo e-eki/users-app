@@ -13,8 +13,6 @@ export default class Main extends PureComponent {
     
     render() {
         const className = 'main ' + (this.props.className ? this.props.className : '');
-
-        debugger;
         
         return (
             <div className = {className}>

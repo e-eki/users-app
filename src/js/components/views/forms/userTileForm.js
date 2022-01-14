@@ -21,8 +21,8 @@ export default class UserTileForm extends PureComponent {
         return (
             <div className = {className}>
                 {/* <div className='user-tile-form_row'> */}
-                    <div className=''>{this.user.name} {this.user.surname}</div>
-                    <div className=''>{this.user.group}</div>
+                    <div className = 'user-tile-form__name'>{this.user.firstName} {this.user.lastName}</div>
+                    <div className = 'user-tile-form__position'>{this.user.position}</div>
                 {/* </div> */}
             </div>
         )

@@ -2,6 +2,7 @@
 
 import store from '../store/store';
 import { setAlertData } from '../actions/alertDataActions';
+import * as usersGenerator from 'multi-users-generator';
 
 // получить сообщение об ошибке
 export function getErrorResponseMessage(error) {
@@ -38,4 +39,26 @@ export function showErrorMessage(error) {
 	};
 
 	store.dispatch(setAlertData(alertData));
+}
+
+// генерация списка пользователей
+export let getUsers = (count, phoneNumber = null, group = null, position = null) => {
+	debugger;
+	const multi = usersGenerator.multiUsers(count);
+
+	const result = multi.map(item => {
+		item.personalPage = item.imageUrl;
+
+		delete item.address;
+		delete item.username;
+		delete item.imageUrl;
+
+		item.phone = phoneNumber || "+123(456)123-45-67";
+		item.group = group || "CEO";
+		item.position = position || "Senior UI Designer";
+
+		return item;
+	});
+	
+	return result;
 }

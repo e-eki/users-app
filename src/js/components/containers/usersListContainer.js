@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import UserList from '../views/usersList';
 import usersConst from '../../constants/usersConst';
+import {getUsers} from '../../utils/baseUtils';
 
 // контейнер для списка пользователей
 class UsersListContainer extends PureComponent {
@@ -17,8 +18,9 @@ class UsersListContainer extends PureComponent {
     componentWillMount() {
         debugger;
 
-        const usersJson = JSON.stringify(usersConst.users);
-        this.users = JSON.parse(usersJson);
+        // const usersJson = JSON.stringify(usersConst.users);
+        // this.users = JSON.parse(usersJson);
+        this.users = getUsers(10);
         
     }
     
