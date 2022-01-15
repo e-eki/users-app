@@ -1,32 +1,90 @@
 'use strict';
 
+const users = [
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	},
+	{
+		firstName: "John",
+		lastName: "Smith",
+		personalPage: "companydomain/JohnSmith",
+		email: "JohnSmith@companydomain.com",
+		group: "CEO",
+		phone: "+123(456)123-45-67"
+	}
+]
+
 // список юзеров
 module.exports = {
-	users: [
+	users: users,
+	
+	usersByGroups: [
 		{
-			firstName: "John",
-			lastName: "Smith",
-			personalPage: "companydomain/JohnSmith",
-			email: "JohnSmith@companydomain.com",
-			group: "CEO",
-			phone: "+123(456)123-45-67"
+			groupName: 'CEO',
+			users: users,
 		},
 		{
-			firstName: "John",
-			lastName: "Smith",
-			personalPage: "companydomain/JohnSmith",
-			email: "JohnSmith@companydomain.com",
-			group: "CEO",
-			phone: "+123(456)123-45-67"
+			groupName: 'CEO',
+			users: users,
 		},
 		{
-			firstName: "John",
-			lastName: "Smith",
-			personalPage: "companydomain/JohnSmith",
-			email: "JohnSmith@companydomain.com",
-			group: "CEO",
-			phone: "+123(456)123-45-67"
+			groupName: 'CEO',
+			users: users,
 		}
 	]
+	
 	
 }

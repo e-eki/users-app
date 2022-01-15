@@ -14,7 +14,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     // подключение сорсмэпс - для отладки
-    devtool: (NODE_ENV !== 'development') ? "cheap-inline-module-source-map" : false,
+    devtool: "cheap-inline-module-source-map",
     module: {
         rules: [
             {
@@ -25,7 +25,6 @@ module.exports = {
             {
                 test: /\.less$/, 
                 exclude: /node_modules/,
-                //loader: 'style-loader!css-loader!less-loader'
                 use: [
                     'style-loader',
                     {
@@ -67,7 +66,7 @@ module.exports = {
     optimization: (NODE_ENV !== 'development') ? {
         minimizer: [
           new UglifyJsPlugin({
-            //sourceMap: true,
+            sourceMap: true,
             uglifyOptions: {
               compress: {
                 inline: false,

@@ -59,6 +59,8 @@ export const SET_ACCESS_TOKEN_EXPIRES_IN = 'SET_ACCESS_TOKEN_EXPIRES_IN';
 export const SET_COLOR_THEME = 'SET_COLOR_THEME';
 export const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
 
+export const SET_USERS = 'SET_USERS';
+
 //---Remote actions (отправляются на сервер и приходят с сервера)
 export const JOIN_ROOM = 'JOIN_ROOM';
 export const LEAVE_ROOM = 'LEAVE_ROOM';

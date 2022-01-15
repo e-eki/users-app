@@ -1,20 +1,25 @@
 
 .user-card-form {
-    width: 100%;
-    padding: 10px;
+    padding: 20px;
+    width: 12vw;
+    height: 15vw;
     display: flex;
     background: @lightgrey;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+    border-radius: 10px;
 
     &__name {
-        width: 10%
+        font-weight: bold;
     }
-    &__group {
-        width: 10%
-    }
-    &__phone {
-        width: 10%
+    &__group_accented {
+        font-weight: bold;
     }
     &__img {
-        //
+        -webkit-perspective-origin: 50% 50%;
+        perspective-origin: 50% 50%;
+        width: 8.5vw;
     }
 }
