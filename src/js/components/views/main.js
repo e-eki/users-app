@@ -16,11 +16,21 @@ export default class Main extends PureComponent {
         
         return (
             <div className = {className}>
-                111111
-
-                <Link to={appConst.usersLink}>
-                    USERS
-                </Link> 
+                <div className='main__text'>
+                    Доброго времени суток!
+                </div>
+                <div className='main__text'>
+                    Вы находитесь на главной странице веб-приложения для управления списком сотрудников компании N.
+                </div>
+                <div className='main__text'>
+                    Здесь вы можете просмотреть и отредактировать список сотрудников и групп сотрудников.
+                </div>
+                <div className='main__text'>
+                    <Link to={appConst.usersLink}>
+                        Перейти к списку сотрудников
+                    </Link> 
+                </div>
+                
             </div>
         )
     }

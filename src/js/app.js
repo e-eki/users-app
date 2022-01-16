@@ -69,26 +69,24 @@ export default class App extends Component {
         <div className = {pageClassName}>
           <Header/>
 
-          {/* <div className = 'content'> */}
-            <Router history={this.history}>
-              <AlertFormContainer/>
+          <Router history={this.history}>
+            <AlertFormContainer/>
 
-              <MenuContainer
-                changePageColorTheme = {this.changePageColorTheme}
-              />
+            <MenuContainer
+              changePageColorTheme = {this.changePageColorTheme}
+            />
 
-              {/* <SearchFormContainer/> */}
+            {/* <SearchFormContainer/> */}
 
-              {/* <BreadcrumbsContainer/> */}
+            {/* <BreadcrumbsContainer/> */}
 
-              <Switch>
-                <Route exact path="/" component={MainContainer} />
-                <Route exact path="/users" component={UsersListContainer} />
-                {/* <Route strict path="/search" component={SearchResultsContainer} /> */}
-                <Redirect to="/" />
-              </Switch>
-            </Router>
-          {/* </div> */}
+            <Switch>
+              <Route exact path="/" component={MainContainer} />
+              <Route exact path="/users" component={UsersListContainer} />
+              {/* <Route strict path="/search" component={SearchResultsContainer} /> */}
+              <Redirect to="/" />
+            </Switch>
+          </Router>
 
           <Footer className = 'page__footer '/>
         </div>

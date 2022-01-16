@@ -2,22 +2,6 @@
 
 import * as actionTypes from './actionTypes';
 
-// найденные чаты
-export function setSearchChannels(data) {
-	return {
-	  type: actionTypes.SET_SEARCH_CHANNELS,
-	  data
-	};
-}
-
-// найденные сообщения
-export function setSearchMessages(data) {
-	return {
-	  type: actionTypes.SET_SEARCH_MESSAGES,
-	  data
-	};
-}
-
 // текст, по которому поиск
 export function setSearchText(data) {
 	return {
@@ -26,10 +10,19 @@ export function setSearchText(data) {
 	};
 }
 
-// тип поиска (по чатам или по сообщениям)
+// тип поиска
 export function setSearchType(data) {
 	return {
 	  type: actionTypes.SET_SEARCH_TYPE,
 	  data
 	};
 }
+
+// тип сортировки
+export function setSortType(data) {
+	return {
+	  type: actionTypes.SET_SORT_TYPE,
+	  data
+	};
+}
+

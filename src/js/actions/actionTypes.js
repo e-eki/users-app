@@ -35,11 +35,7 @@ export const SET_ALERT_DATA = 'SET_ALERT_DATA';
 export const SET_CURRENT_USER_INFO = 'SET_CURRENT_USER_INFO';
 export const SET_MODIFIABLE_USER_INFO = 'SET_MODIFIABLE_USER_INFO';
 
-//---Search actions
-export const SET_SEARCH_CHANNELS = 'SET_SEARCH_CHANNELS';
-export const SET_SEARCH_MESSAGES = 'SET_SEARCH_MESSAGES';
-export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
-export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
+
 
 //---New messages notification actions
 export const SET_NEW_PRIVATE_MESSAGES_COUNT = 'SET_NEW_PRIVATE_MESSAGES_COUNT';
@@ -59,7 +55,12 @@ export const SET_ACCESS_TOKEN_EXPIRES_IN = 'SET_ACCESS_TOKEN_EXPIRES_IN';
 export const SET_COLOR_THEME = 'SET_COLOR_THEME';
 export const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
 
+//---Users list actions
 export const SET_USERS = 'SET_USERS';
+export const SET_USERS_BY_GROUPS = 'SET_USERS_BY_GROUPS';
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
+export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
+export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 
 //---Remote actions (отправляются на сервер и приходят с сервера)
 export const JOIN_ROOM = 'JOIN_ROOM';

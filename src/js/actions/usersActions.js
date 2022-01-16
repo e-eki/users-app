@@ -9,3 +9,12 @@ export function setUsers(data) {
 	  data
 	};
 }
+
+// список пользователей по группам
+export function setUsersByGroups(data) {
+	return {
+	  type: actionTypes.SET_USERS_BY_GROUPS,
+	  data
+	};
+}
+

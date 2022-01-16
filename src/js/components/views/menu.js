@@ -25,18 +25,17 @@ export default class Menu extends PureComponent {
         
         return (
             <div className = {className}>
-                <Link to={appConst.defaultLink}>
-                    <button className = ''>
-                        Главная
-                    </button>
-                </Link>
+                <button className = ''>
+                    <Link to={appConst.defaultLink}>
+                        <div className='menu__main-button-inner'>Главная</div>
+                    </Link>
+                </button>
 
                 <div className='menu__view-types'>
-                    Показать список пользователей в виде
-
+                    Показать список сотрудников в виде
                     <select
                         name="view-type"
-                        className = "menu__view-types-select"
+                        className = "menu__select"
                         onChange = {this.changeViewType}
                         value = {this.props.viewType}
                     >

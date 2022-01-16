@@ -1,23 +1,13 @@
 
-.menu {
+.users-list-menu {
     padding: 1vh;
     background:@snowwhite;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     box-shadow: 0 0 3px 1px @grey;
 
     @media (max-width: @screen-lg) {
         flex-direction: column;
-    }
-    
-    &__mode-button {
-        @media (max-width: @screen-lg) {
-			max-width: 120px;
-		}
-    }
-
-    &__view-types {
-        // width: 18vw;
     }
 
     &__select {
@@ -29,16 +19,9 @@
         // box-shadow: 0 0 3px 1px @lightgreyblue;
     }
 
-    &__main-button-inner {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        color: @black;
-    }
-
-    a {
-        text-decoration: none;
+    input {
+        background: @greysnowwhite;
+        margin-left: 5px;
     }
 }
 
