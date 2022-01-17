@@ -26,3 +26,19 @@ export function setSortType(data) {
 	};
 }
 
+// текущая страница
+export function setCurrentPage(data) {
+	return {
+	  type: actionTypes.SET_CURRENT_PAGE,
+	  data
+	};
+}
+
+// всего страниц списка
+export function setTotalPages(data) {
+	return {
+	  type: actionTypes.SET_TOTAL_PAGES,
+	  data
+	};
+}
+

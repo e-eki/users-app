@@ -8,7 +8,8 @@ import usersConst from '../../constants/usersConst';
 import {getUsers} from '../../utils/baseUtils';
 import appConst from '../../constants/appConst';
 import * as usersActions from '../../actions/usersActions';
-import * as searchActions from '../../actions/searchActions';
+import * as listActions from '../../actions/listActions';
+import PagingForm from '../views/forms/pagingForm';
 
 // контейнер для списка пользователей
 class UsersListContainer extends PureComponent {
@@ -18,15 +19,21 @@ class UsersListContainer extends PureComponent {
     }
 
     componentDidMount() {
-        debugger;
         this.getUsers();
     }
 
     componentDidUpdate(prevProps, prevState) {
         debugger;
-        if (prevProps.viewType !== this.props.viewType) {
-            this.getUsers();
-        } 
+        if (prevProps.currentPage !== this.props.currentPage ||
+            prevProps.sortType !== this.props.sortType) {
+                this.getUsers();
+        }
+        if (prevProps.viewType !== this.props.viewType ||
+            prevProps.searchText !== this.props.searchText ||
+            prevProps.searchType !== this.props.searchType) {
+                this.props.setCurrentPage(1);
+                this.getUsers();
+        }
     }
 
     getUsers = () => {
@@ -38,9 +45,13 @@ class UsersListContainer extends PureComponent {
         if (viewType === appConst.viewTypes.tiles) {
             const usersByGroups = usersConst.usersByGroups;
             this.props.setUsersByGroups(usersByGroups);
+            this.props.setTotalPages(usersByGroups.totalPages);  //todo
+            this.props.setCurrentPage(usersByGroups.currentPage);
         } else {
             const users = getUsers(10);
             this.props.setUsers(users);
+            this.props.setTotalPages(users.totalPages);  //todo
+            this.props.setCurrentPage(users.currentPage);
         }
     }
     
@@ -55,13 +66,19 @@ class UsersListContainer extends PureComponent {
                     setSearchText = {this.props.setSearchText}
                     setSearchType = {this.props.setSearchType}
                     setSortType = {this.props.setSortType}
-                    getUsers = {this.getUsers}
+                    // getUsersByParams = {this.getUsersByParams}
                 />
 
                 <UserList 
                     users = {this.props.users}
                     usersByGroups = {this.props.usersByGroups}
                     viewType = {this.props.viewType}
+                />
+
+                <PagingForm
+                    currentPage = {this.props.currentPage}
+                    setCurrentPage = {this.props.setCurrentPage}
+                    totalPages = {this.props.totalPages}
                 />
             </div>
         );
@@ -74,9 +91,11 @@ const mapStateToProps = function(store) {
         viewType: store.forumDesignState.get('viewType'),
         users: store.usersState.get('users'),
         usersByGroups: store.usersState.get('usersByGroups'),
-        searchText: store.usersState.get('searchText'),
-        searchType: store.usersState.get('searchType'),
-        sortType: store.usersState.get('sortType')
+        searchText: store.listState.get('searchText') || '',
+        searchType: store.listState.get('searchType') || '',
+        sortType: store.listState.get('sortType') || '',
+        currentPage: store.listState.get('currentPage') || 1,
+        totalPages: store.listState.get('totalPages') || 1
     };
 };
 
@@ -89,13 +108,19 @@ const mapDispatchToProps = function(dispatch) {
             dispatch(usersActions.setUsersByGroups(data));
         },
         setSearchText: function(data) {
-            dispatch(searchActions.setSearchText(data));
+            dispatch(listActions.setSearchText(data));
         },
         setSearchType: function(data) {
-            dispatch(searchActions.setSearchType(data));
+            dispatch(listActions.setSearchType(data));
         },
         setSortType: function(data) {
-            dispatch(searchActions.setSortType(data));
+            dispatch(listActions.setSortType(data));
+        },
+        setCurrentPage: function(data) {
+            dispatch(listActions.setCurrentPage(data));
+        },
+        setTotalPages: function(data) {
+            dispatch(listActions.setTotalPages(data));
         },
     }
 }

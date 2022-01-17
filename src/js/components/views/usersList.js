@@ -12,21 +12,9 @@ export default class UserList extends PureComponent {
 
     constructor(props) {
         super(props);
-
-        // const {
-        //     currentPage,
-        //     totalPages,
-        //     setNextPage,
-        //     setPreviousPage,
-        //     nextEnabled,
-        //     previousEnabled,
-        //     startIndex,
-        //     endIndex,
-        // } = usePagination({ totalItems: 0 });
     }
 
     getUserItemsList = () => {
-        debugger;
         const userItemsList = [];
 
         for (let i = 0; i < this.props.users.length; i++) {
@@ -38,7 +26,6 @@ export default class UserList extends PureComponent {
     }
 
     getGroupItemsList = () => {
-        debugger;
         const userItemsList = [];
 
         for (let i = 0; i < this.props.usersByGroups.length; i++) {
@@ -71,10 +58,6 @@ export default class UserList extends PureComponent {
         return item;
     }
 
-    changePage = () => {
-        debugger;
-    }
-
     render() {
         const className = 'users-list ' 
                             + ((this.props.viewType === appConst.viewTypes.cards) ? 'users-list_cards-view' : '')
@@ -94,7 +77,6 @@ export default class UserList extends PureComponent {
         return (
             <div className = {className}>
                 {itemsList}
-
             </div>
         )
     }

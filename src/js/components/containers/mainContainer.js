@@ -11,10 +11,7 @@ class MainContainer extends PureComponent {
         super(props);
     }
 
-    
     render() {
-        // debugger;
-        
         return (
             <Main
                 colorTheme = {this.props.colorTheme}

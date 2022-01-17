@@ -43,7 +43,6 @@ export function showErrorMessage(error) {
 
 // генерация списка пользователей
 export let getUsers = (count, phoneNumber = null, group = null, position = null) => {
-	debugger;
 	const multi = usersGenerator.multiUsers(count);
 
 	const result = multi.map(item => {

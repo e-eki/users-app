@@ -14,13 +14,11 @@ export default class Menu extends PureComponent {
     }
 
 	changeViewType(event) {
-        debugger;
         const value = event.target.value;
         this.props.changeViewType(value);
     }
 
     render() {
-        debugger;
         const className = 'menu ' + (this.props.className ? this.props.className : '');
         
         return (

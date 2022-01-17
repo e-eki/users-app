@@ -6,7 +6,7 @@ import store from '../store/store';
 import forumConst from '../constants/forumConst';
 import { getChannelsByText } from './channelApi';
 import { getMessagesByText } from './messageApi';
-import * as searchActions from '../actions/searchActions';
+import * as listActions from '../actions/listActions';
 
 // поиск по указанному тексту в выбранном типе (чаты или сообщения)
 export function getSearchResults(searchText, searchType) {

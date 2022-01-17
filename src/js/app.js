@@ -8,8 +8,6 @@ import Header from './components/views/header';
 import MenuContainer from './components/containers/menuContainer';
 import Footer from './components/views/footer';
 import AlertFormContainer from './components/containers/alertFormContainer';
-import SearchFormContainer from './components/containers/SearchFormContainer';
-import BreadcrumbsContainer from './components/containers/BreadcrumbsContainer';
 import UsersListContainer from './components/containers/usersListContainer';
 import appConst from './constants/appConst';
 
@@ -35,7 +33,6 @@ export default class App extends Component {
 
   // изменить тему оформления
   changePageColorTheme(colorTheme) {
-    debugger;
     const dayModeModificator = '_day-mode';
     const nightModeModificator = '_night-mode';
 
@@ -62,7 +59,6 @@ export default class App extends Component {
   }
 
   render() {
-    debugger;
     const pageClassName = 'page ' + this.state.pageClassName;
 
       return (
@@ -76,14 +72,9 @@ export default class App extends Component {
               changePageColorTheme = {this.changePageColorTheme}
             />
 
-            {/* <SearchFormContainer/> */}
-
-            {/* <BreadcrumbsContainer/> */}
-
             <Switch>
               <Route exact path="/" component={MainContainer} />
               <Route exact path="/users" component={UsersListContainer} />
-              {/* <Route strict path="/search" component={SearchResultsContainer} /> */}
               <Redirect to="/" />
             </Switch>
           </Router>

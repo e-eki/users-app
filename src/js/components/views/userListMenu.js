@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import appConst from '../../constants/appConst';
 
 // меню для сортировки/поиска по списку пользователей
@@ -13,20 +12,17 @@ export default class UsersListMenu extends PureComponent {
 
 	changeSortType = (event) => {
         debugger;
-        const value = event.target.value;
-        this.props.setSortType(value);
+        this.props.setSortType(event.target.value);
     }
 
     changeSearchType = (event) => {
         debugger;
-        const value = event.target.value;
-        this.props.setSearchType(value);
+        this.props.setSearchType(event.target.value);
     }
 
     changeSearchText = (event) => {
         debugger;
-        const value = event.target.value;
-        this.props.setSearchText(value);
+        this.props.setSearchText(event.target.value);
     }
 
     render() {
@@ -36,9 +32,7 @@ export default class UsersListMenu extends PureComponent {
         return (
             <div className = {className}>
                 <div className='menu__search-types'>
-                    <button className = '' onClick = {this.props.getUsers}>
-                        Искать
-                    </button>
+                    <span>Искать</span>
                     <input 
                         name = "searchText"
                         type="text" 
@@ -63,9 +57,7 @@ export default class UsersListMenu extends PureComponent {
                 </div>
 
                 <div className='menu__sort-types'>
-                    <button className = '' onClick = {this.props.getUsers}>
-                        Сортировать
-                    </button>
+                    <span>Сортировать</span>
                     <select
                         name="sort-type"
                         className = "menu__select"

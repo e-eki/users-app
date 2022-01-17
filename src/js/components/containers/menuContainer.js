@@ -19,20 +19,12 @@ class MenuContainer extends PureComponent {
     }
 
     changeViewType(data) {
-        debugger;
         this.props.setViewType(data);
     }
 
     // изменение темы оформления
     changeColorTheme() {
-        debugger;
-
         switch (this.props.colorTheme) {
-            // case appConst.colorThemes.day:
-            //     this.props.setColorTheme(appConst.colorThemes.night);
-            //     this.props.changePageColorTheme(appConst.colorThemes.night);
-            //     break;
-
             case appConst.colorThemes.night:
                 this.props.setColorTheme(appConst.colorThemes.day);
                 this.props.changePageColorTheme(appConst.colorThemes.day);
@@ -48,14 +40,9 @@ class MenuContainer extends PureComponent {
 
     // получить название кнопки для переключения темы оформления
     getColorThemeButtonTitle() {
-        debugger;
         let title;
 
         switch (this.props.colorTheme) {
-            // case appConst.colorThemes.day:
-            //   title = appConst.colorThemeTitles.night;
-            //   break;
-
             case appConst.colorThemes.night:
                 title = appConst.colorThemeTitles.day;
                 break;
@@ -70,7 +57,6 @@ class MenuContainer extends PureComponent {
     }
     
     render() {
-        debugger;
         const colorThemeTitle = this.getColorThemeButtonTitle();
 
         return (

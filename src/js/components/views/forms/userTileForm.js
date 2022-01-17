@@ -14,14 +14,10 @@ export default class UserTileForm extends PureComponent {
     render() {
         const className = 'user-tile-form ' + (this.props.className ? this.props.className : '');
         
-        debugger;
-        
         return (
             <div className = {className}>
-                {/* <div className='user-tile-form_row'> */}
-                    <div className = 'user-tile-form__name'>{this.props.user.firstName} {this.props.user.lastName}</div>
-                    <div className = 'user-tile-form__position'>{this.props.user.position}</div>
-                {/* </div> */}
+                <div className = 'user-tile-form__name'>{this.props.user.firstName} {this.props.user.lastName}</div>
+                <div className = 'user-tile-form__position'>{this.props.user.position}</div>
             </div>
         )
     }

@@ -24,7 +24,6 @@ export default class GroupForm extends PureComponent {
 
     render() {
         const className = 'group-form ' + (this.props.className ? this.props.className : '');
-        
         debugger;
         const userItems = this.getUserItems();
         
