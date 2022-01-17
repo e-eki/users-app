@@ -4,12 +4,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import UserList from '../views/usersList';
 import UsersListMenu from '../views/userListMenu';
-import usersConst from '../../constants/usersConst';
-import {getUsers} from '../../utils/baseUtils';
+// import usersConst from '../../constants/usersConst';
 import appConst from '../../constants/appConst';
 import * as usersActions from '../../actions/usersActions';
 import * as listActions from '../../actions/listActions';
 import PagingForm from '../views/forms/pagingForm';
+import * as usersApi from '../../api/usersApi';
+import {getUsersByGroups} from '../../api/usersByGroupsApi';
+import {showErrorMessage} from '../../utils/baseUtils';
+import * as listUtils from '../../utils/listUtils';
 
 // контейнер для списка пользователей
 class UsersListContainer extends PureComponent {
@@ -22,7 +25,7 @@ class UsersListContainer extends PureComponent {
         this.getUsers();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {  //???
         debugger;
         if (prevProps.currentPage !== this.props.currentPage ||
             prevProps.sortType !== this.props.sortType) {
@@ -36,24 +39,50 @@ class UsersListContainer extends PureComponent {
         }
     }
 
-    getUsers = () => {
-        // const usersJson = JSON.stringify(usersConst.users);
-        // this.users = JSON.parse(usersJson);
-        const {searchText, searchType, sortType, viewType} = this.props;
+    // getUsers = () => {
+    //     // const usersJson = JSON.stringify(usersConst.users);
+    //     // this.users = JSON.parse(usersJson);
+    //     const {searchText, searchType, sortType, viewType} = this.props;
     
-        debugger;
-        if (viewType === appConst.viewTypes.tiles) {
-            const usersByGroups = usersConst.usersByGroups;
-            this.props.setUsersByGroups(usersByGroups);
-            this.props.setTotalPages(usersByGroups.totalPages);  //todo
-            this.props.setCurrentPage(usersByGroups.currentPage);
-        } else {
-            const users = getUsers(10);
-            this.props.setUsers(users);
-            this.props.setTotalPages(users.totalPages);  //todo
-            this.props.setCurrentPage(users.currentPage);
+    //     debugger;
+    //     if (viewType === appConst.viewTypes.tiles) {
+    //         const usersByGroups = []; //usersConst.usersByGroups;
+    //         this.props.setUsersByGroups(usersByGroups);
+    //         this.props.setTotalPages(usersByGroups.totalPages);  //todo
+    //         this.props.setCurrentPage(usersByGroups.currentPage);
+    //     } else {
+    //         const users = []; //getUsers(10);
+    //         this.props.setUsers(users);
+    //         this.props.setTotalPages(users.totalPages);  //todo
+    //         this.props.setCurrentPage(users.currentPage);
+    //     }
+    // }
+
+    getUsers = async () => {
+        try {
+            const {searchText, searchType, sortType, viewType, currentPage} = this.props;
+            debugger;
+            const limitByViewType = (viewType ? viewType.limit : appConst.viewTypes[appConst.defaultViewType].limit);
+
+            const filter = {
+                start: ((!!currentPage && (currentPage !== 1)) ? (currentPage * limitByViewType) : ''),
+                limit: limitByViewType,
+                sortType: (!!sortType ? sortType.value : appConst.defaultSortType),
+                searchText: searchText,
+                searchType: (!!searchType ? searchType.value : appConst.defaultSearchType)
+            };
+
+            if (viewType === appConst.viewTypes.tiles.value) {
+                const usersByGroups = await getUsersByGroups(filter);
+                this.props.setUsersByGroups(usersByGroups);
+            } else {
+                const users = await usersApi.getUsers(filter);
+                this.props.setUsers(users);
+            }
+        } catch(error) {
+          showErrorMessage(error);
         }
-    }
+      }
     
     render() {
         debugger;
@@ -66,7 +95,6 @@ class UsersListContainer extends PureComponent {
                     setSearchText = {this.props.setSearchText}
                     setSearchType = {this.props.setSearchType}
                     setSortType = {this.props.setSortType}
-                    // getUsersByParams = {this.getUsersByParams}
                 />
 
                 <UserList 

@@ -33,7 +33,6 @@ class AlertFormContainer extends PureComponent {
 const mapStateToProps = function(store) {
     return {
         alertData: store.alertDataState.get('alertData'),
-
         colorTheme: store.forumDesignState.get('colorTheme'),
     };
 };

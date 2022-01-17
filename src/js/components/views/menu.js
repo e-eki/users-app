@@ -35,11 +35,11 @@ export default class Menu extends PureComponent {
                         name="view-type"
                         className = "menu__select"
                         onChange = {this.changeViewType}
-                        value = {this.props.viewType}
+                        value = {this.props.viewType ? this.props.viewType.name : appConst.defaultViewType}
                     >
-                        <option value={appConst.viewTypes.table}>{appConst.viewTypes.table}</option>
-                        <option value={appConst.viewTypes.cards}>{appConst.viewTypes.cards}</option>
-                        <option value={appConst.viewTypes.tiles}>{appConst.viewTypes.tiles}</option>
+                        <option value={appConst.viewTypes.table}>{appConst.viewTypes.table.name}</option>
+                        <option value={appConst.viewTypes.cards}>{appConst.viewTypes.cards.name}</option>
+                        <option value={appConst.viewTypes.tiles}>{appConst.viewTypes.tiles.name}</option>
                     </select>
                 </div>
 

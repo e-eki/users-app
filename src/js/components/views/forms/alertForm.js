@@ -2,6 +2,8 @@
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import PopupForm from './popupForm';
+import appConst from '../../../constants/appConst';
 
 // форма с оповещениями для юзера
 export default class AlertForm extends PureComponent {
@@ -16,34 +18,29 @@ export default class AlertForm extends PureComponent {
 		let alertBlock = <div></div>;
 
 		if (this.props.alertData) {
-			const alertInfo = <div>
-									<div className = 'popup-form__item'>
-										{this.props.alertData.message || 'something happened'}
-									</div>
+			alertBlock = <div>
+							<div className = 'popup-form__item'>
+								{this.props.alertData.message || 'something happened'}
+							</div>
 
-									<div className = 'popup-form__buttons-block'>
-										<button className = '' >
-											Ok
-										</button>
-									</div>
-								</div>;
-
-			alertBlock = <Link to = {this.props.alertData.link}>
-				{alertInfo}	
-			</Link>
+							<div className = 'popup-form__buttons-block'>
+								<button className = '' >
+									Ok
+								</button>
+							</div>
+						</div>;
 		}
 
 		const data = <div className = {className} onClick = {this.props.resetAlertData}>
 						{alertBlock}
-					</div>;  //todo!
+					</div>;
 
 		return (
-			// <PopupForm
-            //     data = {data}
-			// 	colorTheme = {this.props.colorTheme}
-			// 	popupType = {forumConst.popupTypes.alert}
-            // />
-			<div>22222</div>
+			<PopupForm
+                data = {data}
+				colorTheme = {this.props.colorTheme}
+				popupType = {appConst.popupTypes.alert}
+            />
 		)
 	}
 }

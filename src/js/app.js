@@ -7,9 +7,13 @@ import MainContainer from './components/containers/mainContainer';
 import Header from './components/views/header';
 import MenuContainer from './components/containers/menuContainer';
 import Footer from './components/views/footer';
-import AlertFormContainer from './components/containers/alertFormContainer';
 import UsersListContainer from './components/containers/usersListContainer';
 import appConst from './constants/appConst';
+import {generateUsers, groups} from './utils/generateDataUtils';
+import * as usersApi from './api/usersApi';
+import * as groupsApi from './api/groupsApi';
+import AlertFormContainer from './components/containers/alertFormContainer';
+import {showErrorMessage} from './utils/baseUtils';
 
 export default class App extends Component {
 
@@ -29,6 +33,34 @@ export default class App extends Component {
     };
 
     this.changePageColorTheme = this.changePageColorTheme.bind(this);
+  }
+
+  saveDataToDB = async () => {
+    // await this.saveGroupsToDB();
+    // await this.saveUsersToDB();
+  }
+
+  saveGroupsToDB = async () => {
+    try {
+      debugger;
+      for (let i = 0; i < groups.length; i++) {
+        await groupsApi.createGroup(groups[i]);
+      }
+    } catch(error) {
+      showErrorMessage(error);
+    }
+  }
+
+  async saveUsersToDB() {
+    try {
+      const users = generateUsers(100);
+      
+      for (let i = 0; i < users.length; i++) {
+        await usersApi.createUser(users[i]);
+      }
+    } catch(error) {
+      showErrorMessage(error);
+    }
   }
 
   // изменить тему оформления
@@ -64,10 +96,12 @@ export default class App extends Component {
       return (
         <div className = {pageClassName}>
           <Header/>
+          
+          <button onClick={this.saveDataToDB}>GENERATE DATA AND SAVE TO DB</button>
 
           <Router history={this.history}>
-            <AlertFormContainer/>
-
+            <AlertFormContainer />
+            
             <MenuContainer
               changePageColorTheme = {this.changePageColorTheme}
             />

@@ -11,22 +11,18 @@ export default class UsersListMenu extends PureComponent {
     }
 
 	changeSortType = (event) => {
-        debugger;
         this.props.setSortType(event.target.value);
     }
 
     changeSearchType = (event) => {
-        debugger;
         this.props.setSearchType(event.target.value);
     }
 
     changeSearchText = (event) => {
-        debugger;
         this.props.setSearchText(event.target.value);
     }
 
     render() {
-        debugger;
         const className = 'users-list-menu ' + (this.props.className ? this.props.className : '');
         
         return (
@@ -45,14 +41,14 @@ export default class UsersListMenu extends PureComponent {
                         name="search-type"
                         className = "menu__select"
                         onChange = {this.changeSearchType}
-                        value = {this.props.searchType}
+                        value = {this.props.searchType ? this.props.searchType.name : appConst.defaultSearchType}
                     >
-                        <option value={appConst.searchTypes.name}>{appConst.searchTypes.name}</option>
-                        <option value={appConst.searchTypes.personalPage}>{appConst.searchTypes.personalPage}</option>
-                        <option value={appConst.searchTypes.email}>{appConst.searchTypes.email}</option>
-                        <option value={appConst.searchTypes.group}>{appConst.searchTypes.group}</option>
-                        <option value={appConst.searchTypes.phone}>{appConst.searchTypes.phone}</option>
-                        <option value={appConst.searchTypes.position}>{appConst.searchTypes.position}</option>
+                        <option value={appConst.searchTypes.name}>{appConst.searchTypes.name.name}</option>
+                        <option value={appConst.searchTypes.personalPage}>{appConst.searchTypes.personalPage.name}</option>
+                        <option value={appConst.searchTypes.email}>{appConst.searchTypes.email.name}</option>
+                        <option value={appConst.searchTypes.groupId}>{appConst.searchTypes.groupId.name}</option>
+                        <option value={appConst.searchTypes.phone}>{appConst.searchTypes.phone.name}</option>
+                        <option value={appConst.searchTypes.position}>{appConst.searchTypes.position.name}</option>
                     </select>
                 </div>
 
@@ -62,14 +58,14 @@ export default class UsersListMenu extends PureComponent {
                         name="sort-type"
                         className = "menu__select"
                         onChange = {this.changeSortType}
-                        value = {this.props.sortType}
+                        value = {this.props.sortType ? this.props.sortType.name : appConst.defaultSortType}
                     >
-                        <option value={appConst.sortTypes.name}>{appConst.sortTypes.name}</option>
-                        <option value={appConst.sortTypes.personalPage}>{appConst.sortTypes.personalPage}</option>
-                        <option value={appConst.sortTypes.email}>{appConst.sortTypes.email}</option>
-                        <option value={appConst.sortTypes.group}>{appConst.sortTypes.group}</option>
-                        <option value={appConst.sortTypes.phone}>{appConst.sortTypes.phone}</option>
-                        <option value={appConst.sortTypes.position}>{appConst.sortTypes.position}</option>
+                        <option value={appConst.sortTypes.name}>{appConst.sortTypes.name.name}</option>
+                        <option value={appConst.sortTypes.personalPage}>{appConst.sortTypes.personalPage.name}</option>
+                        <option value={appConst.sortTypes.email}>{appConst.sortTypes.email.name}</option>
+                        <option value={appConst.sortTypes.groupId}>{appConst.sortTypes.groupId.name}</option>
+                        <option value={appConst.sortTypes.phone}>{appConst.sortTypes.phone.name}</option>
+                        <option value={appConst.sortTypes.position}>{appConst.sortTypes.position.name}</option>
                     </select>
                 </div>
             </div>

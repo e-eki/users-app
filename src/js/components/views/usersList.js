@@ -37,7 +37,7 @@ export default class UserList extends PureComponent {
     }
 
     getUserGroupItem = (i, group) => {
-        const groupItem = <GroupForm key={i} groupName={group.groupName} users={group.users}/>;
+        const groupItem = <GroupForm key={i} groupName={group.name} users={group.users}/>;
         return groupItem;
     }
 
@@ -45,11 +45,11 @@ export default class UserList extends PureComponent {
         let item = null;
 
         switch (viewType) {
-            case appConst.viewTypes.cards:
+            case appConst.viewTypes.cards.value:
                item = <UserCardForm key={i} user={user}/>
                 break;
 
-            case appConst.viewTypes.table:
+            case appConst.viewTypes.table.value:
             default:
                 item = <UserTableForm key={i} user={user} number={i}/>
                 break;
@@ -60,14 +60,14 @@ export default class UserList extends PureComponent {
 
     render() {
         const className = 'users-list ' 
-                            + ((this.props.viewType === appConst.viewTypes.cards) ? 'users-list_cards-view' : '')
-                            + ((this.props.viewType === appConst.viewTypes.tiles) ? 'users-list_tiles-view' : '')
+                            + ((this.props.viewType === appConst.viewTypes.cards.value) ? 'users-list_cards-view' : '')
+                            + ((this.props.viewType === appConst.viewTypes.tiles.value) ? 'users-list_tiles-view' : '')
                             + (this.props.className ? this.props.className : '');
         
         debugger;
         let itemsList = [];
         
-        if ((this.props.viewType === appConst.viewTypes.tiles) && this.props.usersByGroups) {
+        if ((this.props.viewType === appConst.viewTypes.tiles.value) && this.props.usersByGroups) {
             itemsList = this.getGroupItemsList();
             
         } else if (this.props.users) {
