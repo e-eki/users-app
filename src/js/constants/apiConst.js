@@ -1,10 +1,10 @@
 'use strict';
 
-const server_url = 'http://localhost:3000';
-// const server_url = 'https://snow-trekking-forum.herokuapp.com';   // для heroku
+// const server_url = 'http://localhost:3000';
+const server_url = 'https://test-task-users-app.herokuapp.com/';   // для heroku
 const api_url = `${server_url}/api`;
 
-// адреса для обращения к апи сервера и соцсетей
+// адреса для обращения к апи сервера
 module.exports = {
 	serverUrl: `${server_url}`,
 
