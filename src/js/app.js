@@ -31,18 +31,15 @@ export default class App extends Component {
       // стиль оформления страницы
       pageClassName: this.defaultClassNames.pageClassName,
     };
-
-    this.changePageColorTheme = this.changePageColorTheme.bind(this);
   }
 
   saveDataToDB = async () => {
     // await this.saveGroupsToDB();
-    // await this.saveUsersToDB();
+    await this.saveUsersToDB();
   }
 
   saveGroupsToDB = async () => {
     try {
-      debugger;
       for (let i = 0; i < groups.length; i++) {
         await groupsApi.createGroup(groups[i]);
       }
@@ -51,9 +48,9 @@ export default class App extends Component {
     }
   }
 
-  async saveUsersToDB() {
+  saveUsersToDB = async () => {
     try {
-      const users = generateUsers(100);
+      const users = generateUsers(5);
       
       for (let i = 0; i < users.length; i++) {
         await usersApi.createUser(users[i]);
@@ -64,7 +61,7 @@ export default class App extends Component {
   }
 
   // изменить тему оформления
-  changePageColorTheme(colorTheme) {
+  changePageColorTheme = (colorTheme) => {
     const dayModeModificator = '_day-mode';
     const nightModeModificator = '_night-mode';
 

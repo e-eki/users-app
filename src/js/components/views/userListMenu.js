@@ -10,21 +10,39 @@ export default class UsersListMenu extends PureComponent {
         super(props);
     }
 
+    // изменение типа сортировки
 	changeSortType = (event) => {
-        this.props.setSortType(event.target.value);
+        const value = event.target.value;
+        const sortType = appConst.sortTypes[`${value}`];
+        this.props.setSortType(sortType);
     }
 
+    // изменение типа направления сортировки
+    changeSortDirectionType = (event) => {
+        const value = event.target.value;
+        const sortDirectionType = appConst.sortDirectionTypes[`${value}`];
+        this.props.setSortDirectionType(sortDirectionType);
+    }
+
+    // изменение типа поиска
     changeSearchType = (event) => {
-        this.props.setSearchType(event.target.value);
+        const value = event.target.value;
+        const searchType = appConst.searchTypes[`${value}`];
+        this.props.setSearchType(searchType);
     }
 
+    // изменение текстового значения для поиска
     changeSearchText = (event) => {
         this.props.setSearchText(event.target.value);
     }
 
     render() {
         const className = 'users-list-menu ' + (this.props.className ? this.props.className : '');
-        
+
+        const selectedSearchTypeValue = this.props.searchType ? this.props.searchType.value : appConst.searchTypes[`${appConst.defaultSearchType}`].value;
+        const selectedSortTypeValue = this.props.sortType ? this.props.sortType.value : appConst.sortTypes[`${appConst.defaultSortType}`].value;
+        const selectedSortDirectionTypeValue = this.props.sortDirectionType ? this.props.sortDirectionType.value : appConst.sortDirectionTypes[`${appConst.defaultSortDirectionType}`].value;
+
         return (
             <div className = {className}>
                 <div className='menu__search-types'>
@@ -41,14 +59,14 @@ export default class UsersListMenu extends PureComponent {
                         name="search-type"
                         className = "menu__select"
                         onChange = {this.changeSearchType}
-                        value = {this.props.searchType ? this.props.searchType.name : appConst.defaultSearchType}
+                        value = {selectedSearchTypeValue}
                     >
-                        <option value={appConst.searchTypes.name}>{appConst.searchTypes.name.name}</option>
-                        <option value={appConst.searchTypes.personalPage}>{appConst.searchTypes.personalPage.name}</option>
-                        <option value={appConst.searchTypes.email}>{appConst.searchTypes.email.name}</option>
-                        <option value={appConst.searchTypes.groupId}>{appConst.searchTypes.groupId.name}</option>
-                        <option value={appConst.searchTypes.phone}>{appConst.searchTypes.phone.name}</option>
-                        <option value={appConst.searchTypes.position}>{appConst.searchTypes.position.name}</option>
+                        <option value={appConst.searchTypes.name.value}>{appConst.searchTypes.name.name}</option>
+                        <option value={appConst.searchTypes.personalPage.value}>{appConst.searchTypes.personalPage.name}</option>
+                        <option value={appConst.searchTypes.email.value}>{appConst.searchTypes.email.name}</option>
+                        <option value={appConst.searchTypes.groupName.value}>{appConst.searchTypes.groupName.name}</option>
+                        <option value={appConst.searchTypes.phone.value}>{appConst.searchTypes.phone.name}</option>
+                        <option value={appConst.searchTypes.position.value}>{appConst.searchTypes.position.name}</option>
                     </select>
                 </div>
 
@@ -58,14 +76,24 @@ export default class UsersListMenu extends PureComponent {
                         name="sort-type"
                         className = "menu__select"
                         onChange = {this.changeSortType}
-                        value = {this.props.sortType ? this.props.sortType.name : appConst.defaultSortType}
+                        value = {selectedSortTypeValue}
                     >
-                        <option value={appConst.sortTypes.name}>{appConst.sortTypes.name.name}</option>
-                        <option value={appConst.sortTypes.personalPage}>{appConst.sortTypes.personalPage.name}</option>
-                        <option value={appConst.sortTypes.email}>{appConst.sortTypes.email.name}</option>
-                        <option value={appConst.sortTypes.groupId}>{appConst.sortTypes.groupId.name}</option>
-                        <option value={appConst.sortTypes.phone}>{appConst.sortTypes.phone.name}</option>
-                        <option value={appConst.sortTypes.position}>{appConst.sortTypes.position.name}</option>
+                        <option value={appConst.sortTypes.name.value}>{appConst.sortTypes.name.name}</option>
+                        <option value={appConst.sortTypes.personalPage.value}>{appConst.sortTypes.personalPage.name}</option>
+                        <option value={appConst.sortTypes.email.value}>{appConst.sortTypes.email.name}</option>
+                        <option value={appConst.sortTypes.groupName.value}>{appConst.sortTypes.groupName.name}</option>
+                        <option value={appConst.sortTypes.phone.value}>{appConst.sortTypes.phone.name}</option>
+                        <option value={appConst.sortTypes.position.value}>{appConst.sortTypes.position.name}</option>
+                    </select>
+
+                    <select
+                        name="sort-direction-type"
+                        className = "menu__select"
+                        onChange = {this.changeSortDirectionType}
+                        value = {selectedSortDirectionTypeValue}
+                    >
+                        <option value={appConst.sortDirectionTypes.asc.value}>{appConst.sortDirectionTypes.asc.name}</option>
+                        <option value={appConst.sortDirectionTypes.desc.value}>{appConst.sortDirectionTypes.desc.name}</option>
                     </select>
                 </div>
             </div>

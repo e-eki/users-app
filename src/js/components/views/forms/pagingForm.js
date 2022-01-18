@@ -9,14 +9,14 @@ export default class PagingForm extends PureComponent {
         super(props);
     }
 
+    // перейти к предыдущей странице
     setPreviousPage = () => {
-        debugger;
         const currentPage = this.props.currentPage - 1;
         this.props.setCurrentPage(currentPage);
     }
 
+    // перейти к следующей странице
     setNextPage = () => {
-        debugger;
         const currentPage = this.props.currentPage + 1;
         this.props.setCurrentPage(currentPage);
     }
@@ -24,19 +24,18 @@ export default class PagingForm extends PureComponent {
     render() {
         const className = 'paging-form ' + (this.props.className ? this.props.className : '');
         
-        debugger;
         const previousEnabled = this.props.currentPage > 1;
         const nextEnabled = this.props.currentPage < this.props.totalPages;
         
         return (
             <div className = {className}>
-                <button onClick={this.setPreviousPage} disabled={!previousEnabled}>
+                <button className={previousEnabled ? '' : 'paging-form_disabled'} onClick={this.setPreviousPage} disabled={!previousEnabled}>
                     Previous Page
                 </button>
                 <span className='paging-form__text'>
                     Current Page: {this.props.currentPage} of {this.props.totalPages}
                 </span>
-                <button onClick={this.setNextPage} disabled={!nextEnabled}>
+                <button className={nextEnabled ? '' : 'paging-form_disabled'} onClick={this.setNextPage} disabled={!nextEnabled}>
                     Next Page
                 </button>
             </div>

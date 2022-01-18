@@ -2,7 +2,7 @@
 
 import * as actionTypes from './actionTypes';
 
-// текст, по которому поиск
+// текст, по которому осуществляется поиск
 export function setSearchText(data) {
 	return {
 	  type: actionTypes.SET_SEARCH_TEXT,
@@ -22,6 +22,14 @@ export function setSearchType(data) {
 export function setSortType(data) {
 	return {
 	  type: actionTypes.SET_SORT_TYPE,
+	  data
+	};
+}
+
+// тип направления сортировки
+export function setSortDirectionType(data) {
+	return {
+	  type: actionTypes.SET_SORT_DIRECTION_TYPE,
 	  data
 	};
 }

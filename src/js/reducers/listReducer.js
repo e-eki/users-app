@@ -7,12 +7,6 @@ import * as actionTypes from '../actions/actionTypes';
 export default function listReducer(state = Map(), action) {
 
   switch (action.type) {
-    case actionTypes.SET_SEARCH_CHANNELS:
-      return state.set('searchChannels', action.data);
-
-    case actionTypes.SET_SEARCH_MESSAGES:
-      return state.set('searchMessages', action.data);
-
     case actionTypes.SET_SEARCH_TYPE:
       return state.set('searchType', action.data);
 
@@ -21,6 +15,9 @@ export default function listReducer(state = Map(), action) {
 
     case actionTypes.SET_SORT_TYPE:
       return state.set('sortType', action.data);
+
+    case actionTypes.SET_SORT_DIRECTION_TYPE:
+      return state.set('sortDirectionType', action.data);
 
     case actionTypes.SET_CURRENT_PAGE:
       return state.set('currentPage', action.data);

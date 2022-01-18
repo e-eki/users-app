@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import PopupForm from './popupForm';
 import appConst from '../../../constants/appConst';
 
@@ -12,9 +11,8 @@ export default class AlertForm extends PureComponent {
 		super(props);
 	}
 
-	render() {
-		const className = 'alert-form ' + (this.props.className ? this.props.className : '');
-
+	// получить элемент с оповещением для юзера
+	getAlertBlock = () => {
 		let alertBlock = <div></div>;
 
 		if (this.props.alertData) {
@@ -31,6 +29,13 @@ export default class AlertForm extends PureComponent {
 						</div>;
 		}
 
+		return alertBlock;
+	}
+
+	render() {
+		const className = 'alert-form ' + (this.props.className ? this.props.className : '');
+
+		const alertBlock = this.getAlertBlock();
 		const data = <div className = {className} onClick = {this.props.resetAlertData}>
 						{alertBlock}
 					</div>;

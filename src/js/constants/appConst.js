@@ -4,15 +4,14 @@ const types = {
 	name: {name: 'по имени', value: 'name'},
 	personalPage: {name: 'по ссылке на личную страницу', value: 'personalPage'},
 	email: {name: 'по имейлу', value: 'email'},
-	groupId: {name: 'по группе', value: 'groupId'},
-	phone: {name: 'по телефону', value: 'phone}'},
+	groupName: {name: 'по группе', value: 'groupName'},
+	phone: {name: 'по телефону', value: 'phone'},
 	position: {name: 'по должности', value: 'position'}
 };
 
 module.exports = {
 	// названия роутов
 	defaultLink: '/',
-	searchLink: '/search',
 	usersLink: '/users',
 
 	// название приложения
@@ -20,8 +19,8 @@ module.exports = {
 
 	// типы отображения списка
 	viewTypes: {
-		table: {name: 'таблицы', value: 'table', limit: 10},
-		cards: {name: 'списка карточек', value: 'cards', limit: 10},
+		table: {name: 'таблицы', value: 'table', limit: 15},
+		cards: {name: 'списка карточек', value: 'cards', limit: 15},
 		tiles: {name: 'плитки (по группам)', value: 'tiles', limit: 10},
 	},
 
@@ -31,8 +30,16 @@ module.exports = {
 	// типы поиска
 	searchTypes: types,
 
+	// типы направления сортировки
+	sortDirectionTypes: {
+		asc: {name: 'по возрастанию', value: 'asc'},
+		desc: {name: 'по убыванию', value: 'desc'},
+	},
+
 	// тип сортировки по умолчанию
 	defaultSortType: 'name',
+	// тип направления сортировки по умолчанию
+	defaultSortDirectionType: 'asc',
 	// тип поиска по умолчанию
 	defaultSearchType: 'name',
 	// тип отображения по умолчанию
@@ -53,8 +60,5 @@ module.exports = {
 	// типы всплывающих окон
 	popupTypes: {
 		alert: 'alert',  // оповещения для юзера
-		userInfo: 'userInfo',   // информация юзера
-		info: 'info',   // информация элемента форума (раздел/подраздел/чат/сообщение)
-		adding: 'adding',    // добавление элемента форума
 	}
 }

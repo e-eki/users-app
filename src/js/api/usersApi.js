@@ -7,9 +7,8 @@ const usersApi = `${apiConst.usersApi}`;
 
 // получить список пользователей
 export async function getUsers(data) {
-	debugger;
     return axios
-		.get(`${usersApi}?currentPage=${data.currentPage}&limit=${data.limit}&sortType=${data.sortType}&searchType=${data.searchType}&searchText=${data.searchText}`, data)
+		.get(`${usersApi}?start=${data.start}&limit=${data.limit}&sortType=${data.sortType}&sortDirectionType=${data.sortDirectionType}&searchType=${data.searchType}&searchText=${data.searchText}`, data)
         .then(response => response.data);
 }
 

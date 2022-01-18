@@ -11,6 +11,7 @@ export default class UserCardForm extends PureComponent {
 
     render() {
         const className = 'user-card-form ' + (this.props.className ? this.props.className : '');
+        const groupClassName = 'user-card-form__group ' + (!!this.props.user.groupName ? '' : 'user-card-form_bold');
         
         return (
             <div className = {className}>
@@ -23,7 +24,7 @@ export default class UserCardForm extends PureComponent {
                     title = 'Фото пользователя'
                 >
                 </img>
-                <div className='user-card-form__group'>{this.props.user.group}</div>
+                <div className={groupClassName}>{this.props.user.groupName || 'Unmanaged'}</div>
                 <div className='user-card-form__phone'>{this.props.user.phone}</div>
             </div>
         )

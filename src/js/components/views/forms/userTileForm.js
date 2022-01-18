@@ -9,8 +9,6 @@ export default class UserTileForm extends PureComponent {
         super(props);
     }
 
-
-
     render() {
         const className = 'user-tile-form ' + (this.props.className ? this.props.className : '');
         

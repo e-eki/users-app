@@ -4,7 +4,7 @@ import store from '../store/store';
 import { setAlertData } from '../actions/alertDataActions';
 
 // получить сообщение об ошибке
-export function getErrorResponseMessage(error) {
+export const getErrorResponseMessage = (error) => {
 	let message = '';
 
 	if (error.response && error.response.data) {
@@ -27,7 +27,7 @@ export function getErrorResponseMessage(error) {
 }
 
 // показать сообщение об ошибке
-export function showErrorMessage(error) {
+export const showErrorMessage = (error) => {
 	const message = getErrorResponseMessage(error);
 
 	const alertData = {

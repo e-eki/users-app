@@ -1,6 +1,5 @@
 'use strict';
 
-import Promise from 'bluebird';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Menu from '../views/menu';
@@ -12,18 +11,15 @@ class MenuContainer extends PureComponent {
 
     constructor(props) {
         super(props);
-
-        this.changeViewType = this.changeViewType.bind(this);
-        this.changeColorTheme = this.changeColorTheme.bind(this);
-        this.getColorThemeButtonTitle = this.getColorThemeButtonTitle.bind(this);
     }
 
-    changeViewType(data) {
+    // изменение типа отображения списка
+    changeViewType = (data) => {
         this.props.setViewType(data);
     }
 
     // изменение темы оформления
-    changeColorTheme() {
+    changeColorTheme = () => {
         switch (this.props.colorTheme) {
             case appConst.colorThemes.night:
                 this.props.setColorTheme(appConst.colorThemes.day);
@@ -39,7 +35,7 @@ class MenuContainer extends PureComponent {
     }
 
     // получить название кнопки для переключения темы оформления
-    getColorThemeButtonTitle() {
+    getColorThemeButtonTitle = () => {
         let title;
 
         switch (this.props.colorTheme) {

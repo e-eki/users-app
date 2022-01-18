@@ -9,17 +9,18 @@ export default class Menu extends PureComponent {
 
     constructor(props) {
         super(props);
-
-        this.changeViewType = this.changeViewType.bind(this);
     }
 
-	changeViewType(event) {
+    // изменение типа отображения списка пользователей
+	changeViewType = (event) => {
         const value = event.target.value;
-        this.props.changeViewType(value);
+        const viewType = appConst.viewTypes[`${value}`];
+        this.props.changeViewType(viewType);
     }
 
     render() {
         const className = 'menu ' + (this.props.className ? this.props.className : '');
+        const selectedViewTypeValue = this.props.viewType ? this.props.viewType.value : appConst.viewTypes[`${appConst.defaultViewType}`].value;
         
         return (
             <div className = {className}>
@@ -35,11 +36,11 @@ export default class Menu extends PureComponent {
                         name="view-type"
                         className = "menu__select"
                         onChange = {this.changeViewType}
-                        value = {this.props.viewType ? this.props.viewType.name : appConst.defaultViewType}
+                        value = {selectedViewTypeValue}
                     >
-                        <option value={appConst.viewTypes.table}>{appConst.viewTypes.table.name}</option>
-                        <option value={appConst.viewTypes.cards}>{appConst.viewTypes.cards.name}</option>
-                        <option value={appConst.viewTypes.tiles}>{appConst.viewTypes.tiles.name}</option>
+                        <option value={appConst.viewTypes.table.value}>{appConst.viewTypes.table.name}</option>
+                        <option value={appConst.viewTypes.cards.value}>{appConst.viewTypes.cards.name}</option>
+                        <option value={appConst.viewTypes.tiles.value}>{appConst.viewTypes.tiles.name}</option>
                     </select>
                 </div>
 

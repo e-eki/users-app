@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import UserList from '../views/usersList';
 import UsersListMenu from '../views/userListMenu';
-// import usersConst from '../../constants/usersConst';
 import appConst from '../../constants/appConst';
 import * as usersActions from '../../actions/usersActions';
 import * as listActions from '../../actions/listActions';
@@ -12,72 +11,79 @@ import PagingForm from '../views/forms/pagingForm';
 import * as usersApi from '../../api/usersApi';
 import {getUsersByGroups} from '../../api/usersByGroupsApi';
 import {showErrorMessage} from '../../utils/baseUtils';
-import * as listUtils from '../../utils/listUtils';
 
 // контейнер для списка пользователей
 class UsersListContainer extends PureComponent {
 
     constructor(props) {
         super(props);
+
+        this.ignoreCurrentPage = false;
     }
 
     componentDidMount() {
         this.getUsers();
     }
 
-    componentDidUpdate(prevProps, prevState) {  //???
-        debugger;
-        if (prevProps.currentPage !== this.props.currentPage ||
-            prevProps.sortType !== this.props.sortType) {
-                this.getUsers();
-        }
+    componentDidUpdate(prevProps, prevState) {
+        let newCurrentPage = null;
         if (prevProps.viewType !== this.props.viewType ||
             prevProps.searchText !== this.props.searchText ||
             prevProps.searchType !== this.props.searchType) {
-                this.props.setCurrentPage(1);
-                this.getUsers();
+                // если изменились данные поиска, то текущая страница сбрасывается
+                // чтобы получение списка пользователей в этом случае происходило 
+                // один раз с новой текущей страницей, а не дважды, со старой и с новой страницей,
+                // то не устанавливаем ее через здесь, а передаем в this.getUsers,
+                // где она устанавливается после запроса
+                newCurrentPage = 1;
+        }
+        if (prevProps.viewType !== this.props.viewType ||
+            (prevProps.currentPage !== this.props.currentPage && !this.ignoreCurrentPage) ||
+            prevProps.sortType !== this.props.sortType ||
+            prevProps.sortDirectionType !== this.props.sortDirectionType ||
+            (prevProps.searchType !== this.props.searchType && !!this.props.searchText) ||
+            prevProps.searchText !== this.props.searchText) {
+                this.getUsers(newCurrentPage);
         }
     }
 
-    // getUsers = () => {
-    //     // const usersJson = JSON.stringify(usersConst.users);
-    //     // this.users = JSON.parse(usersJson);
-    //     const {searchText, searchType, sortType, viewType} = this.props;
-    
-    //     debugger;
-    //     if (viewType === appConst.viewTypes.tiles) {
-    //         const usersByGroups = []; //usersConst.usersByGroups;
-    //         this.props.setUsersByGroups(usersByGroups);
-    //         this.props.setTotalPages(usersByGroups.totalPages);  //todo
-    //         this.props.setCurrentPage(usersByGroups.currentPage);
-    //     } else {
-    //         const users = []; //getUsers(10);
-    //         this.props.setUsers(users);
-    //         this.props.setTotalPages(users.totalPages);  //todo
-    //         this.props.setCurrentPage(users.currentPage);
-    //     }
-    // }
-
-    getUsers = async () => {
+    // получение списка пользователей
+    getUsers = async (newCurrentPage = null) => {
         try {
-            const {searchText, searchType, sortType, viewType, currentPage} = this.props;
-            debugger;
-            const limitByViewType = (viewType ? viewType.limit : appConst.viewTypes[appConst.defaultViewType].limit);
+            const {searchText, searchType, sortType, sortDirectionType, viewType, currentPage} = this.props;
+
+            const actualCurrentPage = newCurrentPage || currentPage;
+            const limitByViewType = (viewType ? viewType.limit : appConst.viewTypes[`${appConst.defaultViewType}`].limit);
 
             const filter = {
-                start: ((!!currentPage && (currentPage !== 1)) ? (currentPage * limitByViewType) : ''),
+                start: ((!!actualCurrentPage && (actualCurrentPage > 1)) ? ((actualCurrentPage - 1) * limitByViewType) : ''),
                 limit: limitByViewType,
                 sortType: (!!sortType ? sortType.value : appConst.defaultSortType),
-                searchText: searchText,
+                sortDirectionType: (!!sortDirectionType ? sortDirectionType.value : appConst.defaultSortDirectionType),
+                searchText: searchText || '',
                 searchType: (!!searchType ? searchType.value : appConst.defaultSearchType)
             };
 
-            if (viewType === appConst.viewTypes.tiles.value) {
-                const usersByGroups = await getUsersByGroups(filter);
+            let response;
+            if (!!viewType && (viewType.value === appConst.viewTypes.tiles.value)) {
+                response = await getUsersByGroups(filter);
+                const usersByGroups = JSON.parse(response.data);
                 this.props.setUsersByGroups(usersByGroups);
             } else {
-                const users = await usersApi.getUsers(filter);
+                response = await usersApi.getUsers(filter);
+                const users = JSON.parse(response.data);
                 this.props.setUsers(users);
+            }
+
+            if (response && response.total) {
+                const totalPages = Math.ceil(response.total / limitByViewType);
+                this.props.setTotalPages(totalPages);
+            }
+            if (!!newCurrentPage) {
+                // флаг ignoreCurrentPage нужен, чтобы не получать заново список с сервера при сбросе страницы
+                this.ignoreCurrentPage = true;  
+                this.props.setCurrentPage(newCurrentPage);
+                this.ignoreCurrentPage = false;
             }
         } catch(error) {
           showErrorMessage(error);
@@ -85,16 +91,17 @@ class UsersListContainer extends PureComponent {
       }
     
     render() {
-        debugger;
         return (
             <div>
                 <UsersListMenu
                     searchText = {this.props.searchText}
                     searchType = {this.props.searchType}
                     sortType = {this.props.sortType}
+                    sortDirectionType = {this.props.sortDirectionType}
                     setSearchText = {this.props.setSearchText}
                     setSearchType = {this.props.setSearchType}
                     setSortType = {this.props.setSortType}
+                    setSortDirectionType = {this.props.setSortDirectionType}
                 />
 
                 <UserList 
@@ -119,9 +126,10 @@ const mapStateToProps = function(store) {
         viewType: store.forumDesignState.get('viewType'),
         users: store.usersState.get('users'),
         usersByGroups: store.usersState.get('usersByGroups'),
-        searchText: store.listState.get('searchText') || '',
-        searchType: store.listState.get('searchType') || '',
-        sortType: store.listState.get('sortType') || '',
+        searchText: store.listState.get('searchText'),
+        searchType: store.listState.get('searchType'),
+        sortType: store.listState.get('sortType'),
+        sortDirectionType: store.listState.get('sortDirectionType'),
         currentPage: store.listState.get('currentPage') || 1,
         totalPages: store.listState.get('totalPages') || 1
     };
@@ -143,6 +151,9 @@ const mapDispatchToProps = function(dispatch) {
         },
         setSortType: function(data) {
             dispatch(listActions.setSortType(data));
+        },
+        setSortDirectionType: function(data) {
+            dispatch(listActions.setSortDirectionType(data));
         },
         setCurrentPage: function(data) {
             dispatch(listActions.setCurrentPage(data));

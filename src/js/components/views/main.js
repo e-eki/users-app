@@ -23,7 +23,10 @@ export default class Main extends PureComponent {
                     Вы находитесь на главной странице веб-приложения для управления списком сотрудников компании N.
                 </div>
                 <div className='main__text'>
-                    Здесь вы можете просмотреть и отредактировать список сотрудников и групп сотрудников.
+                    Здесь вы можете просмотреть список сотрудников и групп сотрудников. 
+                </div>
+                <div className='main__text'>
+                    Приятного просмотра!
                 </div>
                 <div className='main__text'>
                     <Link to={appConst.usersLink}>
