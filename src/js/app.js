@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router';
-const createBrowserHistory = require("history").createBrowserHistory;    //?? через import
+const createBrowserHistory = require("history").createBrowserHistory;
 import MainContainer from './components/containers/mainContainer';
 import Header from './components/views/header';
 import MenuContainer from './components/containers/menuContainer';
@@ -33,11 +33,13 @@ export default class App extends Component {
     };
   }
 
-  saveDataToDB = async () => {
+  // сгенерировать и сохранить в БД группы и пользователей
+  generateAndSaveDataToDB = async () => {
     // await this.saveGroupsToDB();
     await this.saveUsersToDB();
   }
 
+  // сохранить группы в БД
   saveGroupsToDB = async () => {
     try {
       for (let i = 0; i < groups.length; i++) {
@@ -48,9 +50,10 @@ export default class App extends Component {
     }
   }
 
+  // сгенерировать и сохранить в БД пользователей
   saveUsersToDB = async () => {
     try {
-      const users = generateUsers(5);
+      const users = generateUsers(300);
       
       for (let i = 0; i < users.length; i++) {
         await usersApi.createUser(users[i]);
@@ -94,7 +97,7 @@ export default class App extends Component {
         <div className = {pageClassName}>
           <Header/>
           
-          <button onClick={this.saveDataToDB}>GENERATE DATA AND SAVE TO DB</button>
+          {/* <button onClick={this.generateAndSaveDataToDB}>GENERATE DATA AND SAVE TO DB</button> */}
 
           <Router history={this.history}>
             <AlertFormContainer />
