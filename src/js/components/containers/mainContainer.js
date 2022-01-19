@@ -14,7 +14,7 @@ class MainContainer extends PureComponent {
     }
 
     componentDidMount() {
-        this.resetListSettings();
+        // this.resetListSettings();
     }
 
     // сброс настроек отображения списка пользователей к дефолтным
